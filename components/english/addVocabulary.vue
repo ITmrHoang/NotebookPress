@@ -33,11 +33,13 @@ export default {
       const _this = this;
       readingFileToBase64(file).then((res) => {
         _this[field] = res;
+        console.log(res);
       });
     },
 
     sound(field) {
-      const sound = new Audio(readBase64(this[field]));
+      const _blob = readBase64(this[field]);
+      const sound = new Audio(_blob);
       sound.play();
     },
   },
