@@ -9,6 +9,8 @@
     <button @click="() => sound('suk')">play uk</button>
     {{ inputValue }}
     {{ suk ?? "" }}
+
+    <button @click="callapi">call</button>
   </div>
 </template>
 
@@ -25,6 +27,14 @@ export default {
     console.log("mounting");
   },
   methods: {
+    callapi() {
+      console.log("call api");
+      // call your API here
+      getSound("/sound/uk/different.mp3").then((data) => {
+        console.log(data);
+        this.suk = data;
+      });
+    },
     handleInput(e) {
       this.inputValue = e.target.value;
     },
@@ -33,12 +43,12 @@ export default {
       const _this = this;
       readingFileToBase64(file).then((res) => {
         _this[field] = res;
-        console.log(res);
       });
     },
 
     sound(field) {
-      const _blob = readBase64(this[field]);
+      const _blob = this[field];
+
       const sound = new Audio(_blob);
       sound.play();
     },
