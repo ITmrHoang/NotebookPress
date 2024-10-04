@@ -30,9 +30,12 @@ export default {
     callapi() {
       console.log("call api");
       // call your API here
-      getSound("/sound/uk/different.mp3").then((data) => {
-        console.log(data);
+      getSound(
+        "https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/a/a__/a__gb/a__gb_2.mp3"
+      ).then((data) => {
         this.suk = data;
+        const sound = new Audio(data);
+        sound.play();
       });
     },
     handleInput(e) {
@@ -43,6 +46,9 @@ export default {
       const _this = this;
       readingFileToBase64(file).then((res) => {
         _this[field] = res;
+        base64ToBlob(res).then((data) => {
+          console.log(data);
+        });
       });
     },
 

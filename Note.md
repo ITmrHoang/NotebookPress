@@ -37,3 +37,6 @@ export default defineNuxtConfig({
   }
 })
 ```
+
+css js html doc
+http://help.dottoro.com/ljxsqnoi.php

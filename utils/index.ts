@@ -12,11 +12,14 @@ export function readingFileToBase64(file: string | Blob): Promise<string> {
 
 export function base64ToBlob(data: string): Promise<Blob> {
   return new Promise<Blob>((resolve, reject) => {
-    fetch(data)
+    $fetch(data)
       .then((result) => {
-        result.blob().then((blob) => {
-          resolve(blob);
-        });
+        console.log(typeof result, result);
+        return result;
+        // if you ues fetch js, you need to result.blob() , However you use $fetch of nuxt response is blob
+        // result.blob().then((blob) => {
+        //   resolve(blob);
+        // });
       })
       .catch((err) => reject(err));
   });
