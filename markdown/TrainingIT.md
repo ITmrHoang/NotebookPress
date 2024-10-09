@@ -236,6 +236,64 @@ HTML5 là phiên bản HTML mới nhất , giới thiệu các thành phần, th
 Có, bạn có thể xây dựng một trang web đơn giản chỉ bằng HTML, nhưng nó sẽ rất cơ bản. Đối với một trang web hấp dẫn về mặt hình ảnh và tương tác, bạn cũng sẽ cần CSS (để tạo kiểu) và JavaScript (cho các thành phần động). Hãy cân nhắc đến hệ thống quản lý nội dung (CMS) cho các trang web lớn hơn, phức tạp hơn.
 ```
 
+### other:
+
+Câu hỏi cơ bản:
+
+HTML là gì?
+Giải thích khái niệm và vai trò của HTML trong phát triển web.
+
+Cấu trúc cơ bản của một tài liệu HTML là gì?
+Bạn có thể mô tả các thẻ chính như < !DOCTYPE html>, < html>, < head>, < body> không?
+
+Sự khác biệt giữa thẻ block và thẻ inline là gì?
+Cho ví dụ cụ thể về từng loại.
+
+Thẻ < div> và < span> có mục đích sử dụng gì?
+Khi nào bạn nên sử dụng thẻ nào?
+
+HTML5 có những tính năng mới nào so với các phiên bản trước?
+Nêu một số thẻ hoặc API mới được giới thiệu trong HTML5.
+
+Bạn biết gì về Semantic HTML?
+Tại sao việc sử dụng HTML ngữ nghĩa lại quan trọng?
+gt:Semantic HTML (HTML ngữ nghĩa) là cách sử dụng các thẻ HTML để mô tả rõ ràng nội dung và cấu trúc của trang web
+
+```
+< header>: Đại diện cho phần đầu của một trang hoặc một phần của tài liệu.
+< nav>: Dùng để định nghĩa phần điều hướng của trang web.
+< main>: Chứa nội dung chính của trang, phần nội dung mà người dùng sẽ chú ý nhất.
+< article>: Đại diện cho một phần nội dung độc lập, có thể là một bài viết hoặc tin tức.
+< section>: Dùng để nhóm các nội dung liên quan lại với nhau.
+< footer>: Thể hiện phần chân trang, thường chứa thông tin liên quan như bản quyền hoặc liên kết.
+```
+
+Giải thích các thuộc tính của thẻ < a>.
+Bao gồm các thuộc tính như href, target, và rel.
+
+Thẻ < form> trong HTML có những thuộc tính và thẻ con nào?
+Nêu rõ cách sử dụng các thuộc tính như action và method.
+
+Bạn có thể giải thích cách làm việc của các thẻ multimedia như < audio> và < video> không?
+Nêu rõ các thuộc tính chính.
+
+Cách xử lý các lỗi phổ biến trong HTML là gì?
+Bạn có thể nêu một số công cụ hoặc phương pháp để kiểm tra lỗi trong mã HTML không?
+
+Câu hỏi thực hành:
+Hãy viết một đoạn mã HTML đơn giản để tạo một trang web cá nhân với tiêu đề, hình ảnh và một danh sách sở thích.
+Bao gồm các thẻ như <h1>, <img>, <ul>.
+
+Bạn có thể tạo một mẫu đơn (form) đăng ký với các trường tên, email và mật khẩu không?
+Sử dụng thẻ <form>, <input>, và <label>.
+
+Câu hỏi về xu hướng:
+Bạn nghĩ HTML có vai trò như thế nào trong phát triển responsive web?
+Giải thích mối liên hệ giữa HTML và CSS trong việc tạo giao diện thích ứng.
+
+Tương lai của HTML có thể thay đổi ra sao với sự phát triển của các công nghệ web mới?
+Bạn có dự đoán nào về xu hướng phát triển của HTML trong các năm tới?
+
 ## **CSS**
 
 ### **1. Khái niệm**
