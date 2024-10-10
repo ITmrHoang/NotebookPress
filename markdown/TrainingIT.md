@@ -249,7 +249,7 @@ Bạn có thể mô tả các thẻ chính như < !DOCTYPE html>, < html>, < hea
 Sự khác biệt giữa thẻ block và thẻ inline là gì?
 Cho ví dụ cụ thể về từng loại.
 
-Thẻ < div> và < span> có mục đích sử dụng gì?
+Thẻ \<div> và \<span> có mục đích sử dụng gì?
 Khi nào bạn nên sử dụng thẻ nào?
 
 HTML5 có những tính năng mới nào so với các phiên bản trước?
@@ -268,31 +268,24 @@ gt:Semantic HTML (HTML ngữ nghĩa) là cách sử dụng các thẻ HTML để
 < footer>: Thể hiện phần chân trang, thường chứa thông tin liên quan như bản quyền hoặc liên kết.
 ```
 
-Giải thích các thuộc tính của thẻ < a>.
-Bao gồm các thuộc tính như href, target, và rel.
+Giải thích các thuộc tính của thẻ \<a>.Bao gồm các thuộc tính như href, target, và rel.
 
-Thẻ < form> trong HTML có những thuộc tính và thẻ con nào?
+Thẻ \<form> trong HTML có những thuộc tính và thẻ con nào?
 Nêu rõ cách sử dụng các thuộc tính như action và method.
 
-Bạn có thể giải thích cách làm việc của các thẻ multimedia như < audio> và < video> không?
+Bạn có thể giải thích cách làm việc của các thẻ multimedia như \<audio> và \<video> không?
 Nêu rõ các thuộc tính chính.
 
-Cách xử lý các lỗi phổ biến trong HTML là gì?
-Bạn có thể nêu một số công cụ hoặc phương pháp để kiểm tra lỗi trong mã HTML không?
+Các lỗi phổ biến trong HTML là gì?
 
 Câu hỏi thực hành:
 Hãy viết một đoạn mã HTML đơn giản để tạo một trang web cá nhân với tiêu đề, hình ảnh và một danh sách sở thích.
-Bao gồm các thẻ như <h1>, <img>, <ul>.
+Bao gồm các thẻ như \<h1>, \<img>, \<ul>.
 
-Bạn có thể tạo một mẫu đơn (form) đăng ký với các trường tên, email và mật khẩu không?
-Sử dụng thẻ <form>, <input>, và <label>.
+Bạn có thể tạo một mẫu đơn (form) đăng ký với các trường tên, email và mật khẩu không? Sử dụng thẻ \<form>, \<input>, và \<label>.
 
-Câu hỏi về xu hướng:
 Bạn nghĩ HTML có vai trò như thế nào trong phát triển responsive web?
 Giải thích mối liên hệ giữa HTML và CSS trong việc tạo giao diện thích ứng.
-
-Tương lai của HTML có thể thay đổi ra sao với sự phát triển của các công nghệ web mới?
-Bạn có dự đoán nào về xu hướng phát triển của HTML trong các năm tới?
 
 ## **CSS**
 
@@ -310,22 +303,32 @@ bộ chọn: [https://www.w3schools.com/cssref/css_selectors.php](https://www.w3
 
 [https://www.w3schools.com/css/css_pseudo_classes.asp](https://www.w3schools.com/css/css_pseudo_classes.asp)
 
-2. ### **syntax**
+### **2. Syntax**
 
-   CSS được viết dưới dạng các quy tắc (rules) gồm các bộ chọn (selectors) và các thuộc tính (properties) selector {
-   property: value;
-   }
-   **Selector (Chọn): Xác định phần tử HTML mà bạn muốn định dạng**. Ví dụ:
+CSS được viết dưới dạng các quy tắc (rules) gồm các bộ chọn (selectors) và các thuộc tính (properties) selector {
+property: value;
+}
+
+**Selector (Chọn): Xác định phần tử HTML mà bạn muốn định dạng**.
+
+Ví dụ:
 
 - h1 (chọn tất cả các phần tử \<h1\>)
 - .classname (chọn tất cả các phần tử có class "classname")
 - \#idname (chọn phần tử có ID "idname")
-  **Property (Thuộc Tính): Thuộc tính CSS bạn muốn thay đổi.** Ví dụ:
--
+
+ref basic: https://www.w3schools.com/cssref/css_selectors.php and https://www.w3schools.com/css/css_selectors.asp
+advance: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors
+
+**Property (Thuộc Tính): Thuộc tính CSS bạn muốn thay đổi.**
+
+Ví dụ:
+
 - color (màu sắc)
 - font-size (kích thước chữ)
 - margin (khoảng cách)
-  **Value (Giá Trị): Giá trị cho thuộc tính. Có thể là màu sắc, kích thước, từ khóa, v.v. Ví dụ:**
+
+**Value (Giá Trị): Giá trị cho thuộc tính. Có thể là màu sắc, kích thước, từ khóa, v.v. Ví dụ:**
 
 - red (đỏ)
 - 16px (16 pixel)
@@ -344,7 +347,15 @@ bộ chọn: [https://www.w3schools.com/cssref/css_selectors.php](https://www.w3
   text-align: center;
   }
 
-**các cách nhúng css:**
+**CSS Pseudo-elements: là cách chọn một phần cụ thể của element để style (tyle specific parts of an element)**
+Ví dụ:
+
+- Style chữ cái hoặc dòng đầu tiên của một phần tử
+- Chèn nội dung trước ::before hoặc sau ::after nội dung của một phần tử
+- Style điểm đánh dấu của các mục danh sách
+- Style hộp xem phía sau hộp thoại
+
+**Các cách nhúng css:**
 
 - Inline CSS: Sử dụng thuộc tính style trực tiếp trong thẻ HTML.
 
@@ -359,7 +370,7 @@ bộ chọn: [https://www.w3schools.com/cssref/css_selectors.php](https://www.w3
 - External CSS: Liên kết đến tệp CSS bên ngoài bằng thẻ \<link\>.
   \<link rel="stylesheet" href="styles.css"\>
 
-3. ### **Các thuộc tính cơ bản:**
+### **3. Các thuộc tính cơ bản:**
 
 Các đơn vị trong css: https://www.w3schools.com/CSS/css\_units.asp
 khái niệm: **Box Model**: Hiểu khái niệm Box Model trong CSS, bao gồm các phần tử như nội dung \=\> thuộc tính padding, border, và margin.
@@ -377,11 +388,12 @@ Các framework css: Bootstrap, Tailwind CSS, Bulma\\
 
 **CSS là gì?**
 
-```CSS (Cascading Style Sheets) là ngôn ngữ để định dạng tài liệu HTML hoặc XML, kiểm soát bố cục, màu sắc, phông chữ và giao diện tổng thể nhằm nâng cao trải nghiệm của người dùng.
+```
+CSS (Cascading Style Sheets) là ngôn ngữ để định dạng tài liệu HTML hoặc XML, kiểm soát bố cục, màu sắc, phông chữ và giao diện tổng thể nhằm nâng cao trải nghiệm của người dùng.
 
 ```
 
-**Tại sao CSS lại quan trọng?**\
+**Tại sao CSS lại quan trọng?**
 
 ```
 CSS tách biệt nội dung khỏi thiết kế, cải thiện khả năng truy cập, nâng cao trải nghiệm của người dùng và cung cấp thiết kế đáp ứng cho nhiều thiết bị và kích thước màn hình khác nhau.
@@ -415,7 +427,7 @@ CSS bên ngoài (External CSS: ): Liên kết tệp CSS bằng thẻ <link>.
 
 ## **Javascript**
 
-## **1.Khái niệm**
+### **1. Khái niệm**
 
 JavaScript là một ngôn ngữ lập trình bậc cao, được sử dụng chủ yếu để tạo ra các trang web động và tương tác. Nó là một phần không thể thiếu trong phát triển web, thường được sử dụng kết hợp với HTML và CSS.
 
@@ -427,12 +439,13 @@ JavaScript là một ngôn ngữ lập trình bậc cao, được sử dụng ch
 - Tương tác với DOM:JavaScript có thể tương tác với Document Object Model (DOM) của trang, cho phép thay đổi cấu trúc, nội dung và phong cách của các phần tử HTML.
 - Tính không đồng bộ:JavaScript hỗ trợ xử lý bất đồng bộ (asynchronous), cho phép thực hiện nhiều tác vụ cùng một lúc mà không làm chậm quá trình tải trang.
 
-  ### **Cách sử dụng JavaScript trên web**
+### **Cách sử dụng JavaScript trên web**
 
 **Nhúng trực tiếp trong HTML**:
 \<script\>
 alert("Chào mừng đến với trang web của tôi\!");
 \</script\>
+
 **Liên kết đến tệp JavaScript bên ngoài**:
 \<script src="script.js"\>\</script\>
 
@@ -476,14 +489,3 @@ Cách truy cập và thay đổi các phần tử HTML thông qua Document Objec
 Thêm, sửa đổi, xóa phần tử trên trang web.
 cách xử lý các sự kiện như click, hover, nhập liệu từ bàn phím.
 Cách thực hiện yêu cầu bất đồng bộ để lấy dữ liệu từ server mà không cần tải lại trang
-
-````
-
-```
-
-```
-
-```
-
-```
-````

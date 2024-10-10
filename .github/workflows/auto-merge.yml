@@ -1,0 +1,41 @@
+name: Auto Merge to Develop
+
+on:
+  push:
+    branches-ignore:
+      - develop
+      - main
+      - staging
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - run: corepack enable
+
+      - name: Install Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+          # Pick your own package manager and build script
+      - run: npm install
+      - name: run build
+        run: npm run build
+
+      - name: Setup Git
+        if: success()
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Merge to develop
+        run: |
+          git checkout develop
+          git merge ${{ github.ref_name }}
+          git push origin develop
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
