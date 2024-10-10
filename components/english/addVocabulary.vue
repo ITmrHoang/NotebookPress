@@ -9,6 +9,8 @@
     <button @click="() => sound('suk')">play uk</button>
     {{ inputValue }}
     {{ suk ?? "" }}
+
+    <button @click="callapi">call</button>
   </div>
 </template>
 
@@ -25,6 +27,17 @@ export default {
     console.log("mounting");
   },
   methods: {
+    callapi() {
+      console.log("call api");
+      // call your API here
+      getSound(
+        "https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/a/a__/a__gb/a__gb_2.mp3"
+      ).then((data) => {
+        this.suk = data;
+        const sound = new Audio(data);
+        sound.play();
+      });
+    },
     handleInput(e) {
       this.inputValue = e.target.value;
     },
@@ -33,11 +46,16 @@ export default {
       const _this = this;
       readingFileToBase64(file).then((res) => {
         _this[field] = res;
+        base64ToBlob(res).then((data) => {
+          console.log(data);
+        });
       });
     },
 
     sound(field) {
-      const sound = new Audio(readBase64(this[field]));
+      const _blob = this[field];
+
+      const sound = new Audio(_blob);
       sound.play();
     },
   },

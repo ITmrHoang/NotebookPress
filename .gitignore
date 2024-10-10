@@ -6,7 +6,6 @@
 .cache
 .nuxt
 dist
-sw.*
 # Logs
 logs
 *.log
