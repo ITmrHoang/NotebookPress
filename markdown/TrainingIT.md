@@ -479,6 +479,7 @@ Sự ra đời của javascript:
 
 ### **Synxtax: cú pháp trong js**
 
+```
 các kiểu dữ liệu
 Khái niệm về object và array.
 varibale : let , const,var
@@ -489,3 +490,4 @@ Cách truy cập và thay đổi các phần tử HTML thông qua Document Objec
 Thêm, sửa đổi, xóa phần tử trên trang web.
 cách xử lý các sự kiện như click, hover, nhập liệu từ bàn phím.
 Cách thực hiện yêu cầu bất đồng bộ để lấy dữ liệu từ server mà không cần tải lại trang
+```

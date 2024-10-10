@@ -37,9 +37,11 @@
           </summary>
           <p>
             <code>
-              push-ac = "!f() { git add . && git commit -m \"Commit on $(date
-              +'%Y-%m-%d')\" -m \" by $(git config user.name) - <$(git config
-              user.email)>\" && git push; }; f"
+              {{
+                `
+              push-ac = "!f() { git add . && git commit -m \"Commit on $(date'%Y-%m-%d')\" -m \" by $(git config user.name) <$(git config user.email)> && git push $(git branch --show-current); }; f"
+              `
+              }}
             </code>
           </p>
         </details>
