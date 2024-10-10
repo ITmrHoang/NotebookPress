@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxt/types": "^2.18.1",
     "@nuxtjs/storybook": "^8.2.0",
+    "markdown-it": "^14.1.0",
     "nuxt": "^3.13.0",
     "sitemap": "^8.0.0",
     "storybook": "^8.3.4",
