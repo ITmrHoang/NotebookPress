@@ -12,14 +12,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          
       - name: Checkout repository
         uses: actions/checkout@v3
       - run: corepack enable
 
-      # - name: Install Node.js 20
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: "20"
+
 
       #     # Pick your own package manager and build script
       # - run: npm install
@@ -50,16 +52,11 @@ jobs:
           git checkout develop
           git merge origin/feature/english-tools --allow-unrelated-histories || true
           git status
-          git diff
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Resolve conflicts and commit
-        if: failure()
-        run: |
-          git checkout --theirs .
-          git add .
-          git commit -m "Resolve merge conflict in"
+          if ! git diff --quiet; then
+            git checkout --theirs .
+            git add .
+            git commit -m "Resolve conflict" || echo "No changes to commit"
+          fi
           git push origin develop
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
