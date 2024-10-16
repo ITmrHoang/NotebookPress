@@ -38,13 +38,10 @@ jobs:
 
       - name: Checkout develop branch
         run: |
-          git config --global --list
           git checkout develop
-          git pull --ff-only origin develop
 
       - name: Merge to develop
         run: |
-          git pull --ff-only origin develop
           git merge ${{ github.ref_name }} 
           git push origin develop
         env:
