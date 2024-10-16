@@ -32,12 +32,15 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
       - name: Fetch all branches
-        run: git fetch --all
+        run: |
+          git fetch --all
+          git branch -d develop
+          git stash
 
       - name: Merge to develop
         run: |
           git checkout develop
-          git merge ${{ github.ref_name }} --allow-unrelated-histories
+          git merge ${{ github.ref_name }}
           git push origin develop
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
