@@ -40,13 +40,13 @@ jobs:
           echo "Current branch:"
           git branch
           echo "Commit history of develop:"
-          git log develop -n 3
+          git log origin/develop -n 3
           echo "Commit history of ${{ github.ref_name }}:"
           git log origin/${{ github.ref_name }} -n 3
 
       - name: Attempt to merge
         run: |
-          git checkout develop
+          git checkout -b develop origin/develop
           echo "Attempting to merge...\n"
           git merge origin/${{ github.ref_name }} --allow-unrelated-histories || true
           echo "\ncheck status\n"
