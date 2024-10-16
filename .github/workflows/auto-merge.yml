@@ -12,14 +12,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          
       - name: Checkout repository
         uses: actions/checkout@v3
       - run: corepack enable
 
-      # - name: Install Node.js 20
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: "20"
+
 
       #     # Pick your own package manager and build script
       # - run: npm install
@@ -36,16 +38,30 @@ jobs:
         run: |
           git fetch --all
 
-      - name: Checkout develop branch
+      - name: Debug - Show commit history
         run: |
-          git config --global --list
-          git checkout develop
-          git pull --ff-only origin develop
+          echo "Current branch:"
+          git branch
+          echo "Commit history of develop:"
+          git log -n 3
+          echo "Commit history of feature/english-tools:"
+          git log origin/feature/english-tools -n 3
 
-      - name: Merge to develop
+      - name: Attempt to merge
         run: |
-          git pull --ff-only origin develop
-          git merge ${{ github.ref_name }} 
+          git checkout develop
+          git merge origin/feature/english-tools --allow-unrelated-histories || true
+          git status
+          if ! git diff --quiet; then
+            git checkout --theirs .
+            git add .
+            git commit -m "Resolve conflict" || echo "No changes to commit"
+          fi
           git push origin develop
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push changes to develop
+        run: git push origin develop
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
