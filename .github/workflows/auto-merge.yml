@@ -47,10 +47,9 @@ jobs:
 
       - name: Attempt to merge
         run: |
-          git fetch --all
-          git checkout -b develop origin/develop
+          git checkout --force -B develop origin/develop
           echo "Attempting to merge...\n"
-          git merge origin/${{ github.ref_name }}
+          git merge origin/${{ github.ref_name }} --allow-unrelated-histories || true
           echo "check status"
           git status
           echo "git diff"
