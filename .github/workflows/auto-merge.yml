@@ -39,8 +39,10 @@ jobs:
       - name: Checkout develop branch
         run: |
           git branch
+          git log -n 2
+
           git checkout develop
-          git log n 3
+          git log -n 2
 
       - name: Merge to develop
         run: |
