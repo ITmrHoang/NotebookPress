@@ -34,7 +34,6 @@ jobs:
       - name: Fetch all branches
         run: |
           git fetch --all
-          git stash
 
       - name: Merge to develop
         run: |
