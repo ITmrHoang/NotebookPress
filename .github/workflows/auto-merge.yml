@@ -35,6 +35,7 @@ jobs:
       - name: Fetch all branches
         run: |
           git fetch --all
+          git pull --ff-only origin develop
 
       - name: Checkout develop branch
         run: git checkout develop
