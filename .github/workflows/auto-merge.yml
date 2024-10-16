@@ -38,6 +38,7 @@ jobs:
 
       - name: Checkout develop branch
         run: |
+          git branch
           git checkout develop
 
       - name: Merge to develop
