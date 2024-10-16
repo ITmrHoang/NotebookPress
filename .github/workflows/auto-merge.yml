@@ -15,28 +15,25 @@ jobs:
       - name: Setup Node.js 20
         uses: actions/setup-node@v3
         with:
-          node-version: "20"
-          
+          node-version: "20.x"
+
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - run: corepack enable
 
-
-
-      #     # Pick your own package manager and build script
+      # Bỏ chú thích nếu bạn cần cài đặt dependencies hoặc xây dựng
       # - run: npm install
-      # - name: run build
+      # - name: Run build
       #   run: npm run build
 
       - name: Setup Git
-        # if: success()
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
       - name: Fetch all branches
-        run: |
-          git fetch --all
+        run: git fetch --all
 
       - name: Debug - Show commit history
         run: |
@@ -44,13 +41,14 @@ jobs:
           git branch
           echo "Commit history of develop:"
           git log -n 3
-          echo "Commit history of feature/english-tools:"
-          git log origin/feature/english-tools -n 3
+          echo "Commit history of ${{ github.ref_name }}:"
+          git log origin/${{ github.ref_name }} -n 3
 
       - name: Attempt to merge
         run: |
           git checkout develop
-          git merge origin/feature/english-tools --allow-unrelated-histories || true
+          echo "Attempting to merge..."
+          git merge origin/${{ github.ref_name }} --allow-unrelated-histories || true
           git status
           if ! git diff --quiet; then
             git checkout --theirs .
@@ -58,10 +56,5 @@ jobs:
             git commit -m "Resolve conflict" || echo "No changes to commit"
           fi
           git push origin develop
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Push changes to develop
-        run: git push origin develop
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
