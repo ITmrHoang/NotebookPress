@@ -39,12 +39,11 @@ jobs:
       - name: Checkout develop branch
         run: |
           git checkout develop
-          git pull --ff-only origin develop
 
       - name: Merge to develop
         run: |
-          git pull --ff-only origin develop
-          git merge ${{ github.ref_name }}  --allow-unrelated-histories
-          git push origin develop
+          git merge ${{ github.ref_name }}  --allow-unrelated-histories || true
+          git status
+          git diff
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
