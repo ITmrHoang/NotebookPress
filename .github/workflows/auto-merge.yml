@@ -47,6 +47,7 @@ jobs:
 
       - name: Attempt to merge
         run: |
+          git checkout develop
           git merge origin/feature/english-tools --allow-unrelated-histories || true
           git status
           git diff
@@ -56,12 +57,14 @@ jobs:
       - name: Resolve conflicts and commit
         if: failure()
         run: |
-          git checkout --theirs .github/workflows/auto-merge.yml
-          git add .github/workflows/auto-merge.yml
-          git commit -m "Resolve merge conflict in auto-merge.yml"
+          git checkout --theirs .
+          git add .
+          git commit -m "Resolve merge conflict in"
           git push origin develop
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push changes to develop
         run: git push origin develop
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
