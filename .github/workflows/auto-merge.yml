@@ -36,18 +36,32 @@ jobs:
         run: |
           git fetch --all
 
-      - name: Checkout develop branch
+      - name: Debug - Show commit history
         run: |
+          echo "Current branch:"
           git branch
-          git log -n 2
+          echo "Commit history of develop:"
+          git log -n 3
+          echo "Commit history of feature/english-tools:"
+          git log origin/feature/english-tools -n 3
 
-          git checkout develop
-          git log -n 2
-
-      - name: Merge to develop
+      - name: Attempt to merge
         run: |
-          git merge ${{ github.ref_name }}  --allow-unrelated-histories || true
+          git merge origin/feature/english-tools --allow-unrelated-histories || true
           git status
           git diff
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Resolve conflicts and commit
+        if: failure()
+        run: |
+          git checkout --theirs .github/workflows/auto-merge.yml
+          git add .github/workflows/auto-merge.yml
+          git commit -m "Resolve merge conflict in auto-merge.yml"
+          git push origin develop
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push changes to develop
+        run: git push origin develop
