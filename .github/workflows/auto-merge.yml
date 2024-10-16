@@ -38,7 +38,9 @@ jobs:
           git pull --ff-only origin develop
 
       - name: Checkout develop branch
-        run: git checkout develop
+        run: |
+          git checkout develop
+          git pull --ff-only origin develop
 
       - name: Merge to develop
         run: |
