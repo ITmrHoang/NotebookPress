@@ -75,3 +75,6 @@ bun run preview
 markdown it: https://github.com/nuxt-community/markdownit-module/issues/47
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+#link
+https://itmrhoang.github.io/NotebookPress/
