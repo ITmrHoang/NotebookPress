@@ -40,6 +40,7 @@ jobs:
         run: |
           git branch
           git checkout develop
+          git log n 3
 
       - name: Merge to develop
         run: |
