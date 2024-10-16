@@ -37,7 +37,7 @@ jobs:
       - name: Merge to develop
         run: |
           git checkout develop
-          git merge ${{ github.ref_name }}
+          git merge ${{ github.ref_name }} --allow-unrelated-histories
           git push origin develop
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
