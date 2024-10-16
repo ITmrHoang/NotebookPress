@@ -37,6 +37,7 @@ jobs:
 
       - name: Debug - Show commit history
         run: |
+          git branch -a
           echo "Current branch:"
           git branch
           echo "Commit history of develop:"
@@ -46,14 +47,15 @@ jobs:
 
       - name: Attempt to merge
         run: |
+          git fetch --all
           git checkout -b develop origin/develop
           echo "Attempting to merge...\n"
-          git merge origin/${{ github.ref_name }} --allow-unrelated-histories || true
-          echo "\ncheck status\n"
+          git merge origin/${{ github.ref_name }}
+          echo "check status"
           git status
           echo "git diff"
           git diff
-          echo "force merged...\n"
+          echo "force merged..."
           if ! git diff --quiet; then
             git checkout --theirs .
             git add .
