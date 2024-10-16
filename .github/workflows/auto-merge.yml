@@ -40,21 +40,26 @@ jobs:
           echo "Current branch:"
           git branch
           echo "Commit history of develop:"
-          git log -n 3
+          git log develop -n 3
           echo "Commit history of ${{ github.ref_name }}:"
           git log origin/${{ github.ref_name }} -n 3
 
       - name: Attempt to merge
         run: |
           git checkout develop
-          echo "Attempting to merge..."
+          echo "Attempting to merge...\n"
           git merge origin/${{ github.ref_name }} --allow-unrelated-histories || true
+          echo "\ncheck status\n"
           git status
+          echo "git diff"
+          git diff
+          echo "force merged...\n"
           if ! git diff --quiet; then
             git checkout --theirs .
             git add .
             git commit -m "Resolve conflict" || echo "No changes to commit"
           fi
+          echo "\n pussh develop \n"
           git push origin develop
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
