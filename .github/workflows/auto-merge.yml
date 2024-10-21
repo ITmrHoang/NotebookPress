@@ -19,8 +19,8 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - run: corepack enable
+        with:
+          fetch-depth: 0 # Fetch toàn bộ lịch sử commit
 
       # Bỏ chú thích nếu bạn cần cài đặt dependencies hoặc xây dựng
       # - run: npm install

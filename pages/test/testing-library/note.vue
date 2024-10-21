@@ -32,6 +32,10 @@
             });`
       }}
     </code>
+
+    <div>
+      <a href="https://www.w3.org/TR/html-aria/#docconformance"> information getByRole</a>
+    </div>
   </div>
 </template>
 

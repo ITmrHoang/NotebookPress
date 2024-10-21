@@ -28,12 +28,16 @@ import fs from "fs";
 import path from "path";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const md = new MarkdownIt();
-
   const loadMarkdown = (filePath) => {
-    const fullPath = path.join(process.cwd(), "markdown", filePath);
-    const content = fs.readFileSync(fullPath, "utf-8");
-    return md.render(content);
+    if (process.server) {
+      console.log(filePath);
+      const fullPath = path.join(process.cwd(), "markdown", filePath);
+      const content = fs.readFileSync(fullPath, "utf-8");
+      return content;
+    } else {
+      console.error("loadMarkdown should only be called on the server-side.");
+      return null;
+    }
   };
 
   // Inject hàm loadMarkdown vào context của Nuxt app
@@ -41,10 +45,10 @@ export default defineNuxtPlugin((nuxtApp) => {
 });
 
 // Để sử dụng toàn cục, bạn có thể định nghĩa một tệp mới
-export const loadMarkdown = (filePath) => {
-  const { $loadMarkdown } = useNuxtApp();
-  return $loadMarkdown(filePath);
-};
+// export const loadMarkdown = (filePath) => {
+//   const { $loadMarkdown } = useNuxtApp();
+//   return $loadMarkdown(filePath);
+// };
 
 // use in component
 /* <template>

@@ -1,5 +1,6 @@
 <template>
   <div v-html="renderedMarkdown"></div>
+  <div>test markdown</div>
 </template>
 
 <script>
@@ -27,8 +28,10 @@
 
 <!-- components/MarkdownRenderer.vue -->
 <script setup>
+import { useNuxtApp } from "#app";
 import { inject, ref, onMounted } from "vue";
 
+const { $loadMarkdown } = useNuxtApp();
 const props = defineProps({
   filePath: {
     type: String,
@@ -38,10 +41,9 @@ const props = defineProps({
 
 const renderedMarkdown = ref("");
 
-const loadMarkdown = inject("loadMarkdown"); // Nhận hàm từ plugin
-
-onMounted(() => {
-  renderedMarkdown.value = loadMarkdown(props.filePath);
+onMounted(async () => {
+  const data = await $loadMarkdown(props.filePath);
+  renderedMarkdown.value = data;
 });
 </script>
 
