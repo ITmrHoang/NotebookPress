@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <MarkdownRenderer filePath="TrainingIT.md"></MarkdownRenderer>
 </template>
 
 <script setup></script>

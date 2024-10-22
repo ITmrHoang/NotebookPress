@@ -1,6 +1,6 @@
 <template>
   <div>test</div>
-  <MarkdownRenderer filePath="TrainingIT.md" />
+  <MarkdownRenderer filePath="test.md" />
 </template>
 
 <script lang="ts" setup></script>

@@ -1,52 +1,54 @@
 <template>
   <div v-html="renderedMarkdown"></div>
-  <div>test markdown</div>
 </template>
 
-<script>
-// import { inject } from "vue";
-
-// export default {
-//   props: {
-//     filePath: {
-//       type: String,
-//       required: true,
-//     },
-//   },
-//   data() {
-//     return {
-//       renderedMarkdown: "",
-//     };
-//   },
-//   async asyncData() {
-//     const loadMarkdown = inject("$loadMarkdown"); // Sử dụng inject để lấy hàm
-//     this.renderedMarkdown = loadMarkdown(this.filePath);
-//   },
-// };
-//
-</script>
-
+<!--  defiend name -->
+<!-- <script>
+export default {
+  name: "CustomName",
+  inheritAttrs: false,
+  customOptions: {},
+};
+</script> -->
 <!-- components/MarkdownRenderer.vue -->
 <script setup>
+import { ref, onMounted } from "vue";
 import { useNuxtApp } from "#app";
-import { inject, ref, onMounted } from "vue";
 
-const { $loadMarkdown } = useNuxtApp();
+defineOptions({
+  name: "MarkdownRenderer",
+});
 const props = defineProps({
   filePath: {
     type: String,
     required: true,
   },
 });
+const { $loadMarkdown, $md, $loadData } = useNuxtApp();
 
 const renderedMarkdown = ref("");
 
-onMounted(async () => {
-  const data = await $loadMarkdown(props.filePath);
-  renderedMarkdown.value = data;
+// c1 using function to render
+// const loadData = () => {
+//   renderedMarkdown.value = $loadMarkdown("test.md");
+// };
+// loadData();
+
+// Sử dụng useAsyncData để load nội dung trong SSR
+const { data } = await useAsyncData(props.filePath, () => {
+  return new Promise((resolve) => {
+    const content = $loadMarkdown(props.filePath);
+    resolve(content);
+  });
+});
+onMounted(() => {
+  renderedMarkdown.value = data.value;
 });
 </script>
 
 <style>
 /* Thêm các kiểu ở đây nếu cần */
+code {
+  white-space: break-spaces;
+}
 </style>
