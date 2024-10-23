@@ -1,13 +1,7 @@
 <template>
-  <div>
-    
-  </div>
+  <MarkdownRenderer filePath="TrainingIT.md"></MarkdownRenderer>
 </template>
 
-<script lang="ts" setup>
+<script setup></script>
 
-</script>
-
-<style>
-
-</style>
+<style></style>

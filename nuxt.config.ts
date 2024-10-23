@@ -1,3 +1,5 @@
+import { plugin } from "postcss";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default {
   devtools: { enabled: true },
@@ -8,10 +10,21 @@ export default {
     public: "/<srcDir>/public",
   },
   // config
+  build: {
+    extend(config: any, { isClient }: any) {
+      if (isClient) {
+        config.node = {
+          process: true,
+        };
+      }
+    },
+  },
   modules: ["@nuxtjs/storybook"],
   routeRules: {
     // Homepage pre-rendered at build time
     "/": { prerender: true },
+    "/testa/**": { ssr: true },
+
     // Static page generated on-demand, revalidates in background (ISG)
     // là feature testing code nên cache 1 day ago
     "/storybook/**": { swr: 86400 },

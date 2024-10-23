@@ -72,6 +72,10 @@ yarn preview
 bun run preview
 ```
 
+Plugin
+
+1. [markdown](https://www.npmjs.com/package/markdown-it)
+
 markdown it: https://github.com/nuxt-community/markdownit-module/issues/47
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

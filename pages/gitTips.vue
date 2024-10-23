@@ -39,7 +39,7 @@
             <code>
               {{
                 `
-              push-ac = "!f() { git add . && git commit -m \"Commit on $(date'%Y-%m-%d')\" -m \" by $(git config user.name) <$(git config user.email)> && git push $(git branch --show-current); }; f"
+              push-ac = "!f() { git add . && git commit -m \"Commit on $(date'%Y-%m-%d')\" -m \" by $(git config user.name) <$(git config user.email)> && git push origin $(git branch --show-current); }; f"
               `
               }}
             </code>
