@@ -1,5 +1,10 @@
 {
-  "name": "nuxt-app",
+  "name": "notebook-press",
+  "version": "1.0.0",
+  "description": "A static notebook generator using Nuxt.js",
+  "author": "itmrhoang@gmail.com",
+  "license": "MIT",
+  "repository": "",
   "private": true,
   "type": "module",
   "scripts": {

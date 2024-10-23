@@ -10,6 +10,10 @@ export default {
     public: "/<srcDir>/public",
   },
   // config
+  target: "static", // Chế độ static
+  router: {
+    base: "NotebookPress", // Thay <NotebookPress> bằng tên repository của bạn
+  },
   build: {
     extend(config: any, { isClient }: any) {
       if (isClient) {
