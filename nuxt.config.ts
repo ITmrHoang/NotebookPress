@@ -12,7 +12,7 @@ export default {
   // config
   target: "static", // Chế độ static
   router: {
-    base: "NotebookPress", // Thay <NotebookPress> bằng tên repository của bạn
+    base: "/NotebookPress/", // Thay <NotebookPress> bằng tên repository của bạn
   },
   build: {
     extend(config: any, { isClient }: any) {
