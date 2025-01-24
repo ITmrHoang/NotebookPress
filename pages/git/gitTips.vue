@@ -45,13 +45,10 @@
               }}
             </code>
     <p> them tham so message:
-      push-ac = "!f() { \
-      msg=\"$1\"; \
-      shift; \
-      git add . && \
-      git commit -m \"Commit on $(date +'%Y-%m-%dT%H:%M:%S')\" -m \" by $(git config user.name) <$(git config user.email)> \" -m \"$msg\" && \
-      git push origin $(git branch --show-current); \
-      }; f"
+      push-ac = "!f() { msg=\"$1\"; \
+      git add .\
+      && git commit -m \"Commit on $(date +'%Y-%m-%dT%H:%M:%S'): $msg\" -m \" by $(git config user.name) - <$(git config user.email)> - tel:+84582625538\" && git push origin $(git branch --show-current); }; f"
+
 
       msg="$1"; shift;: Lấy thông điệp bổ sung từ tham số đầu tiên và sau đó dịch chuyển các tham số.
       git commit -m "$msg": Thêm thông điệp bổ sung vào commit.</p>
