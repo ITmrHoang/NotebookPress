@@ -82,3 +82,5 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 #link
 https://itmrhoang.github.io/NotebookPress/
+
+https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
