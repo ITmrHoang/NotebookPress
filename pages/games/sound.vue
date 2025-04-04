@@ -1,5 +1,5 @@
 <template>
-  <link v-for="item in sounds" rel="preload" :href="`/sound/games/sounds/${item.value}`" as="fetch">
+  <link v-for="item in sounds" rel="preload" :href="`${process.env.NUXT_APP_BASE_URL}/sound/games/sounds/${item.value}`" as="fetch">
   <div class="container" :style="{'background-color': bgcolor}" @click="onClick">
     <div class="select_sound">
       <select v-model="selectedSound">
