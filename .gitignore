@@ -4,8 +4,8 @@
 .nuxt
 .nitro
 .cache
+.nuxt
 dist
-
 # Logs
 logs
 *.log

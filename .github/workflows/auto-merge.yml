@@ -1,0 +1,66 @@
+name: Auto Merge to Develop
+
+on:
+  push:
+    branches-ignore:
+      - develop
+      - main
+      - staging
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch toàn bộ lịch sử commit
+
+      # Bỏ chú thích nếu bạn cần cài đặt dependencies hoặc xây dựng
+      # - run: npm install
+      # - name: Run build
+      #   run: npm run build
+
+      - name: Setup Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Fetch all branches
+        run: git fetch --all
+
+      - name: Debug - Show commit history
+        run: |
+          git branch -a
+          echo "Current branch:"
+          git branch
+          echo "Commit history of develop:"
+          git log origin/develop -n 3
+          echo "Commit history of ${{ github.ref_name }}:"
+          git log origin/${{ github.ref_name }} -n 3
+
+      - name: Attempt to merge
+        run: |
+          git checkout --force -B develop origin/develop
+          echo "Attempting to merge...\n"
+          git merge origin/${{ github.ref_name }} --allow-unrelated-histories || true
+          echo "check status"
+          git status
+          echo "git diff"
+          git diff
+          echo "force merged..."
+          if ! git diff --quiet; then
+            git checkout --theirs .
+            git add .
+            git commit -m "Resolve conflict" || echo "No changes to commit"
+          fi
+          echo "\n pussh develop \n"
+          git push origin develop
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

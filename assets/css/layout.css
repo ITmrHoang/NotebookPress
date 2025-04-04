@@ -1,0 +1,6 @@
+.main {
+    width: 100% !important;
+    /* xuống dong phu hop voi kich thuoc contianer */
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
