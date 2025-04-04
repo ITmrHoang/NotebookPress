@@ -71,7 +71,7 @@
       </code>
     </pre>
 
-    <p>
+    <div>
     <pre>
       Giải thích cách hoạt động 
       1. Khi nhận được mã trạng thái 401:
@@ -99,12 +99,12 @@
             </code>
             token ở đây là giá trị mà bạn đã truyền vào khi gọi resolve trong processQueue. cơ chế Closures queue sẽ lưu trữ ref resolve của request  và khi có token sẽ gọi resole trong  đó khi processQueue(null, token);
     </pre>
-    <p> Tóm tắt
+    <div> Tóm tắt
     <pre>
     failedQueue: Lưu trữ các yêu cầu bị từ chối trong khi token đang được làm mới trong nó như thành một Closures
     then((token) => {...}): Đây là nơi bạn xử lý token mới mà bạn đã giải quyết từ queue khi foreach và gọi resolve của request đó (closures trong queue)
-    </pre></p>
-    </p>
+    </pre></div>
+    </div>
     <p>update instance</p>
     <pre>
       <code>
@@ -154,6 +154,142 @@
         };
       </code>
     </pre>
+
+    <div>
+      <h1>  base with  async not test  có thể chạy  vào chi rè 1 lần khi mạng chạm nhưng hơi dài dòng phức tạp</h1>
+      <code>
+
+           import axios from 'axios';
+          import store from './store'; // Điều chỉnh import theo cấu trúc dự án của bạn
+          import { getAuth, setAuthInfo } from './auth'; // Điều chỉnh import theo cấu trúc dự án của bạn
+
+          let isRefreshing = false;
+          let failedQueue = [];
+
+          const processQueue = async (error, token = null) => {
+            while (failedQueue.length > 0) {
+              const { resolve, reject, originalRequest } = failedQueue.shift();
+              if (error) {
+                reject(error);
+              } else {
+                originalRequest.headers['Authorization'] = 'Bearer ' + token;
+                try {
+                  const response = await api(originalRequest);
+                  resolve(response);
+                } catch (err) {
+                  reject(err);
+                }
+              }
+            }
+          };
+
+          const api = axios.create({
+            baseURL: 'https://your-api-url.com', // Thay thế bằng URL API của bạn
+          });
+
+          api.interceptors.response.use(
+            response => response.data,
+            async error => {
+              const originalRequest = error.config;
+
+              if (error.response.status === 401 && !originalRequest._retry) {
+                if (isRefreshing) {
+                  return new Promise((resolve, reject) => {
+                    failedQueue.push({ resolve, reject, originalRequest });
+                  });
+                }
+
+                originalRequest._retry = true;
+                isRefreshing = true;
+
+                const refreshToken = getAuth().refreshToken;
+
+                try {
+                  const { data } = await api.post('/auth/refresh', { refreshToken });
+                  store.dispatch(setAuthInfo(data));
+                  api.defaults.headers.common['Authorization'] = 'Bearer ' + data.accessToken;
+                  await processQueue(null, data.accessToken);
+                  return api(originalRequest);
+                } catch (err) {
+                  await processQueue(err, null);
+                  return Promise.reject(err);
+                } finally {
+                  isRefreshing = false;
+                }
+              }
+
+              return Promise.reject(error);
+            }
+          );
+
+          export default api;
+      </code>
+    </div>
+
+    <div> dont using queue using promise await refresh dont </div>
+    <code>
+  import axios from 'axios';
+  import store from './store'; // Điều chỉnh import theo cấu trúc dự án của bạn
+  import { getAuth, setAuthInfo } from './auth'; // Điều chỉnh import theo cấu trúc dự án của bạn
+
+  let isRefreshing = false;
+  let refreshTokenPromise = null;
+  let failedQueue = [];
+
+
+  const api = axios.create({
+    baseURL: 'https://your-api-url.com', // Thay thế bằng URL API của bạn
+  });
+
+  api.interceptors.response.use(
+    response => response.data,
+    async error => {
+      const originalRequest = error.config;
+
+      if (error.response.status === 401 && !originalRequest._retry) {
+        if (isRefreshing) {
+          return refreshTokenPromise.then(token => {
+            originalRequest.headers['Authorization'] = 'Bearer ' + token;
+            return api(originalRequest);
+          });
+        }
+
+        originalRequest._retry = true;
+        isRefreshing = true;
+
+        const refreshToken = getAuth().refreshToken;
+
+        refreshTokenPromise = api.post('/auth/refresh', { refreshToken })
+          .then(({ data }) => {
+            store.dispatch(setAuthInfo(data));
+            api.defaults.headers.common['Authorization'] = 'Bearer ' + data.accessToken;
+            processQueue(null, data.accessToken);
+            return data.accessToken;
+          })
+          .catch(err => {
+            processQueue(err, null);
+            throw err;
+          })
+          .finally(() => {
+            isRefreshing = false;
+            refreshTokenPromise = null;
+          });
+
+        return refreshTokenPromise.then(token => {
+          originalRequest.headers['Authorization'] = 'Bearer ' + token;
+          return api(originalRequest);
+        });
+      }
+
+      return Promise.reject(error);
+    }
+  );
+
+  export default api;
+    </code>
+    <div>
+      <h1> with promise finally </h1>
+    </div>
   </div>
 </template>
 
