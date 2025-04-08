@@ -20,7 +20,7 @@
 <script>
   export default {
     data() {
-      const baseURL = this.$config.public.baseURL;
+      const baseURL = '/NotePress/';
       return {
         layouts: "empty",
         bgcolor: "",
