@@ -27,12 +27,13 @@ export default {
   },
   methods: {
     onClick() {
+      console.log(process.env, process.env.NUXT_APP_BASE_URL)
       this.bgcolor = this.randomColor()
       this.playSound()
     },
     playSound() {
       if (this.selectedSound) {
-        const audio = new Audio(`${process.env.NUXT_APP_BASE_URL ? `${process.env.NUXT_APP_BASE_UR}` : '' }/sound/games/sounds/${this.selectedSound}`);
+        const audio = new Audio(`~/assets/public/sound/games/sounds/${this.selectedSound}`);
         audio.play();
       }
     },
@@ -48,12 +49,6 @@ export default {
 }
 
 </script>
-
-<!-- <script setup>
-  definePageMeta({
-            layout: false
-        })
-        </script> -->
 
 <style>
 .select_sound {
