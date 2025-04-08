@@ -36,14 +36,14 @@ export default defineNuxtPlugin((nuxtApp) => {
   };
 
   const loadMarkdown = (filePath) => {
-    if (process.server) {
-      const fullPath = path.join(process.cwd(), "markdown", filePath);
-      const content = fs.readFileSync(fullPath, "utf-8");
-      return md.render(content);
-    } else {
-      console.error("loadMarkdown should only be called on the server-side.");
-      return null;
-    }
+    // if (process.server) {
+    //   const fullPath = path.join(process.cwd(), "markdown", filePath);
+    //   const content = fs.readFileSync(fullPath, "utf-8");
+    //   return md.render(content);
+    // } else {
+    //   console.error("loadMarkdown should only be called on the server-side.");
+    //   return null;
+    // }
   };
 
   // Inject hàm loadMarkdown vào context của Nuxt app

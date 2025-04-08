@@ -20,7 +20,7 @@
 <script>
   export default {
     data() {
-      const baseURL = '/NotePress/';
+      const baseURL = getBaseUrl()
       return {
         layouts: "empty",
         bgcolor: "",
@@ -43,11 +43,13 @@
 
     methods: {
       onClick() {
+        console.log('click')
         this.bgcolor = this.randomColor();
         this.playSound();
       },
       playSound() {
         if (this.selectedSound) {
+          console.log(this.selectedSound)
           const audio = new Audio(this.selectedSound.path);
           audio.play();
           audio.addEventListener("ended", () => {

@@ -18,11 +18,11 @@ export default {
   },
   build: {
     extend(config: any, { isClient }: any) {
-      if (isClient) {
-        config.node = {
-          process: true,
-        };
-      }
+      // if (isClient) {
+      //   config.node = {
+      //     process: true,
+      //   };
+      // }
     },
   },
   modules: ["@nuxtjs/storybook"],
