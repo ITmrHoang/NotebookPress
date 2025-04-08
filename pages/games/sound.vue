@@ -43,7 +43,6 @@
 
     methods: {
       onClick() {
-        console.log(process.env, process.env.NUXT_APP_BASE_URL, this.selectedSound);
         this.bgcolor = this.randomColor();
         this.playSound();
       },
