@@ -1,5 +1,4 @@
 <template>
-  <link v-for="item in sounds" rel="preload" :href="`/NotebookPress/sound/games/sounds/${item.value}`" as="fetch">
   <div class="container" :style="{'background-color': bgcolor}" @click="onClick">
     <div class="select_sound">
       <select v-model="selectedSound">
@@ -33,7 +32,7 @@ export default {
     },
     playSound() {
       if (this.selectedSound) {
-        const audio = new Audio(`/sound/games/sounds/${this.selectedSound}`);
+        const audio = new Audio(`${process.env.NUXT_APP_BASE_URL ? `${process.env.NUXT_APP_BASE_UR}` : '' }/sound/games/sounds/${this.selectedSound}`);
         audio.play();
       }
     },
