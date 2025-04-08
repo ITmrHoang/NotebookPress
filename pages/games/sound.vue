@@ -20,23 +20,22 @@
 <script>
   export default {
     data() {
-      const baseURL = getBaseUrl()
       return {
         layouts: "empty",
         bgcolor: "",
         sounds: [
-          { name: "coin drop", value: "coin-drop.mp3", path: `${baseURL}sound/games/sounds/coin-drop.mp3` },
-          { name: "bip", value: "bip.mp3", path: `${baseURL}sound/games/sounds/bip.mp3` },
+          { name: "coin drop", value: "coin-drop.mp3"},
+          { name: "bip", value: "bip.mp3"},
           {
             name: "sound bip when click",
             value: "bip-when-click.mp3",
-            path: `${baseURL}sound/games/sounds/bip-when-click.mp3`,
+           
           },
-          { name: "short bip", value: "short-bip.mp3", path: `${baseURL}sound/games/sounds/short-bip.mp3` },
-          { name: "elevator-bip", value: "elevator-bip.mp3", path: `${baseURL}sound/games/sounds/elevator-bip.mp3` },
-          { name: "ting ting", value: "ting-ting.mp3", path: `${baseURL}sound/games/sounds/ting-ting.mp3` },
+          { name: "short bip", value: "short-bip.mp3"},
+          { name: "elevator-bip", value: "elevator-bip.mp3" },
+          { name: "ting ting", value: "ting-ting.mp3" },
         ],
-        selectedSound:  { name: "coin drop", value: "coin-drop.mp3", path: `${baseURL}sound/games/sounds/coin-drop.mp3` },
+        selectedSound:  { name: "coin drop", value: "coin-drop.mp3" },
         audioFiles: {},
       };
     },
@@ -50,13 +49,13 @@
       playSound() {
         if (this.selectedSound) {
           console.log(this.selectedSound)
-          const audio = new Audio(this.selectedSound.path);
-          audio.play();
-          audio.addEventListener("ended", () => {
-            audio.src = ""; // Giải phóng tài nguyên âm thanh
-            audio.load(); // Đảm bảo không còn dữ liệu âm thanh
-            audio.remove(); // Giải phóng bộ nhớ
-          });
+          // const audio = new Audio(this.selectedSound.path);
+          // audio.play();
+          // audio.addEventListener("ended", () => {
+          //   audio.src = ""; // Giải phóng tài nguyên âm thanh
+          //   audio.load(); // Đảm bảo không còn dữ liệu âm thanh
+          //   audio.remove(); // Giải phóng bộ nhớ
+          // });
         }
       },
       randomColor() {
