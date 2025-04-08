@@ -10,12 +10,12 @@ const styleFiles = (path) => {
   } else return [];
 };
 export default defineNuxtConfig({
-  runtimeConfig: {
-    public: {
-      baseURL:
-        typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "http://localhost:3000/" : "/NotebookPress/",
-    },
-  },
+  // runtimeConfig: {
+  //   public: {
+  //     baseURL:
+  //       typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "http://localhost:3000/" : "/NotebookPress/",
+  //   },
+  // },
 
   app: {
     // rootId: "_himo",
