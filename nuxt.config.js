@@ -12,7 +12,8 @@ const styleFiles = (path) => {
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      baseURL: process.env.NUXT_APP_BASE_URL || "/NotebookPress/",
+      baseURL:
+        typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "http://localhost:3000/" : "/NotebookPress/",
     },
   },
 
