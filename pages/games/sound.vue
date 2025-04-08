@@ -8,7 +8,7 @@
       <select v-model="selectedSound">
         <option
           v-for="item in sounds"
-          :value="item.value"
+          :value="item"
         >
           {{ item.name }}
         </option>
@@ -20,51 +20,42 @@
 <script>
   export default {
     data() {
+      const baseURL = this.$config.public.baseURL;
       return {
         layouts: "empty",
-        selectedSound: "bip.mp3",
         bgcolor: "",
         sounds: [
-          { name: "coin drop", value: "coin-drop.mp3" },
-          { name: "bip", value: "bip.mp3" },
-          { name: "sound bip when click", value: "bip-when-click.mp3" },
-          { name: "short bip", value: "short-bip.mp3" },
-          { name: "elevator-bip", value: "elevator-bip.mp3" },
-          { name: "ting ting", value: "ting-ting.mp3" },
+          { name: "coin drop", value: "coin-drop.mp3", path: `${baseURL}sound/games/sounds/coin-drop.mp3` },
+          { name: "bip", value: "bip.mp3", path: `${baseURL}sound/games/sounds/bip.mp3` },
+          {
+            name: "sound bip when click",
+            value: "bip-when-click.mp3",
+            path: `${baseURL}sound/games/sounds/bip-when-click.mp3`,
+          },
+          { name: "short bip", value: "short-bip.mp3", path: `${baseURL}sound/games/sounds/short-bip.mp3` },
+          { name: "elevator-bip", value: "elevator-bip.mp3", path: `${baseURL}sound/games/sounds/elevator-bip.mp3` },
+          { name: "ting ting", value: "ting-ting.mp3", path: `${baseURL}sound/games/sounds/ting-ting.mp3` },
         ],
-        audio: null,
-        audioCache: {},
+        selectedSound:  { name: "coin drop", value: "coin-drop.mp3", path: `${baseURL}sound/games/sounds/coin-drop.mp3` },
         audioFiles: {},
       };
     },
-    created() {
-      this.loadAudioFiles();
-    },
-    methods: {
-      loadAudioFiles() {
-        const files = import.meta.glob("@/assets/public/sound/games/sounds/*.mp3");
-        for (const path in files) {
-          files[path]().then((module) => {
-            const fileName = path.split("/").pop();
-            this.audioFiles[fileName] = module.default;
-          });
-        }
-      },
 
+    methods: {
       onClick() {
-        console.log(process.env, process.env.NUXT_APP_BASE_URL, this.audio);
+        console.log(process.env, process.env.NUXT_APP_BASE_URL, this.selectedSound);
         this.bgcolor = this.randomColor();
         this.playSound();
       },
       playSound() {
         if (this.selectedSound) {
-          if (this.audioCache[this.selectedSound]) {
-            this.audio = this.audioCache[this.selectedSound];
-          } else {
-            this.audio = new Audio(this.audioFiles[this.selectedSound]);
-            this.audioCache[this.selectedSound] = this.audio;
-          }
-          this.audio.play();
+          const audio = new Audio(this.selectedSound.path);
+          audio.play();
+          audio.addEventListener("ended", () => {
+            audio.src = ""; // Giải phóng tài nguyên âm thanh
+            audio.load(); // Đảm bảo không còn dữ liệu âm thanh
+            audio.remove(); // Giải phóng bộ nhớ
+          });
         }
       },
       randomColor() {
