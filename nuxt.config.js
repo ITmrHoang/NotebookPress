@@ -45,5 +45,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   css: ["~/assets/css/main.css", ...styleFiles("assets/css/globals/")],
+  compatibilityDate: "2025-04-08",
 });

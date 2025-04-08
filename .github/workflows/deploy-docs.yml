@@ -31,7 +31,7 @@ jobs:
       - run: npm install
       - run: echo "NUXT_APP_BASE_URL=/NotebookPress/" > .env
       - run: |
-          export NUXT_APP_BASE_URL=/NotebookPress/
+          source .env   
           npx nuxt build --preset github_pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
