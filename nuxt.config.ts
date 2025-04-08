@@ -13,8 +13,12 @@ export default {
 
 
   target: "static", // Chế độ static
+  render: {
+    resourceHints: false
+  },
   router: {
     base: "/NotebookPress/", // Thay <NotebookPress> bằng tên repository của bạn
+    prefetchLinks: false
   },
   build: {
     extend(config: any, { isClient }: any) {
