@@ -23,7 +23,7 @@
       const baseURL = getBaseUrl()
       return {
         layouts: "empty",
-        bgcolor: "",
+        bgcolor: "#0000",
         sounds: [
           { name: "coin drop", value: "coin-drop.mp3", path: `${baseURL}sound/games/sounds/coin-drop.mp3` },
           { name: "bip", value: "bip.mp3", path: `${baseURL}sound/games/sounds/bip.mp3` },
