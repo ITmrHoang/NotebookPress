@@ -20,7 +20,7 @@
 <script>
   export default {
     data() {
-      const baseURL = getBaseUrl()
+      const baseURL = getBaseUrl();
       return {
         layouts: "empty",
         bgcolor: "#0000",
@@ -36,17 +36,54 @@
           { name: "elevator-bip", value: "elevator-bip.mp3", path: `${baseURL}sound/games/sounds/elevator-bip.mp3` },
           { name: "ting ting", value: "ting-ting.mp3", path: `${baseURL}sound/games/sounds/ting-ting.mp3` },
         ],
-        selectedSound:  { name: "coin drop", value: "coin-drop.mp3", path: `${baseURL}sound/games/sounds/coin-drop.mp3` },
+        selectedSound: {
+          name: "coin drop",
+          value: "coin-drop.mp3",
+          path: `${baseURL}sound/games/sounds/coin-drop.mp3`,
+        },
         audioFiles: {},
       };
     },
-
+    mounted() {
+      this.toggleFullScreen()
+    },
     methods: {
       onClick() {
-        console.log('click')
         this.bgcolor = this.randomColor();
         this.playSound();
       },
+
+      toggleFullScreen() {
+        const elem = document.documentElement;
+        if (!document.fullscreenElement) {
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.mozRequestFullScreen) {
+            // Firefox
+            elem.mozRequestFullScreen();
+          } else if (elem.webkitRequestFullscreen) {
+            // Chrome, Safari and Opera
+            elem.webkitRequestFullscreen();
+          } else if (elem.msRequestFullscreen) {
+            // IE/Edge
+            elem.msRequestFullscreen();
+          }
+        }
+        //  else {
+        //   if (document.exitFullscreen) {
+        //     document.exitFullscreen();
+        //   } else if (document.mozCancelFullScreen) {
+        //     // Firefox
+        //     document.mozCancelFullScreen();
+        //   } else if (document.webkitExitFullscreen) {
+        //     // Chrome, Safari and Opera
+        //     document.webkitExitFullscreen();
+        //     //edge
+        //     document.msExitFullscreen();
+        //   }
+        // }
+      },
+
       playSound() {
         if (this.selectedSound) {
           const audio = new Audio(this.selectedSound.path);

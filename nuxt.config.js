@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   app: {
     // rootId: "_himo",
     baseURL: typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "/NotebookPress/" : "/NotebookPress/",
-    buildAssetsDir: "assets",
+    // buildAssetsDir: "assets",
     rootAttrs: {
       id: "_himo",
     },
@@ -38,6 +38,15 @@ export default defineNuxtConfig({
       link: [
         // <link rel="stylesheet" href="https://myawesome-lib.css">
         // { rel: 'stylesheet', href: 'https://awesome-lib.css' }
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: "/favicon.ico",
+          href:
+            typeof process != undefined
+              ? process?.env.NUXT_APP_BASE_URL || "/NotebookPress/"
+              : "/NotebookPress/" + "favicon.ico",
+        },
       ],
       // please note that this is an area that is likely to change
       style: [
