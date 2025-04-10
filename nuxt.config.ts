@@ -18,7 +18,7 @@ export default {
   router: {
     base: "/NotebookPress/", // Thay <NotebookPress> bằng tên repository của bạn
     prefetchLinks: false,
-    mode: 'hash'
+    // mode: 'hash'
   },
   build: {
     extend(config: any, { isClient }: any) {

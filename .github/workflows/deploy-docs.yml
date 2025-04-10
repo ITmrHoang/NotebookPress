@@ -32,8 +32,6 @@ jobs:
       - run: |
           export NUXT_APP_BASE_URL=/NotebookPress/
           npx nuxt build --preset github_pages
-      - name: generate static files
-        run: npx nuxt generate
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

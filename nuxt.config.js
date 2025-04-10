@@ -1,6 +1,4 @@
 // other config can not set in config.ts with export default can use defineNuxtConfig
-import fs from "fs";
-
 const styleFiles = (path) => {
   const fs = require("fs");
   if (fs.existsSync(path)) {
@@ -12,18 +10,19 @@ const styleFiles = (path) => {
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      baseURL:
-        typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "http://localhost:3000/" : "/NotebookPress/",
+      baseURL: typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "/NotebookPress/" : "/NotebookPress/",
     },
   },
   // ssr: false,
   // mode: "static",
   router: {
-    base: typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "http://localhost:3000/" : "/NotebookPress/",
+    base: typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "/NotebookPress/" : "/NotebookPress/",
   },
   generate: { subFolders: true, fallback: "404.html" },
   app: {
     // rootId: "_himo",
+    baseURL: typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "/NotebookPress/" : "/NotebookPress/",
+    buildAssetsDir: "assets",
     rootAttrs: {
       id: "_himo",
     },
