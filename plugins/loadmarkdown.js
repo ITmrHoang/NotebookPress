@@ -25,9 +25,6 @@
 // utizule
 // import markdownit from "markdown-it";
 import markdownIt from "markdown-it";
-import fs from "fs";
-import path from "path";
-
 export default defineNuxtPlugin((nuxtApp) => {
   const md = markdownIt({ html: true, breaks: true });
 
@@ -37,6 +34,9 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const loadMarkdown = (filePath) => {
     if (process.server) {
+      const fs = require("fs");
+      const path = require("path");
+
       const fullPath = path.join(process.cwd(), "markdown", filePath);
       const content = fs.readFileSync(fullPath, "utf-8");
       return md.render(content);
@@ -44,6 +44,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       console.error("loadMarkdown should only be called on the server-side.");
       return null;
     }
+    return null;
   };
 
   // Inject hàm loadMarkdown vào context của Nuxt app
