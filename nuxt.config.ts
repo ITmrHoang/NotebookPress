@@ -2,6 +2,7 @@ import { plugin } from "postcss";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default {
+  ssr: false,
   devtools: { enabled: true },
   alias: {
     "~~": "/<rootDir>",
@@ -11,22 +12,21 @@ export default {
   },
   // config
 
-
-  target: "static", // Chế độ static
   render: {
     resourceHints: false
   },
   router: {
     base: "/NotebookPress/", // Thay <NotebookPress> bằng tên repository của bạn
-    prefetchLinks: false
+    prefetchLinks: false,
+    mode: 'hash'
   },
   build: {
     extend(config: any, { isClient }: any) {
-      // if (isClient) {
-      //   config.node = {
-      //     process: true,
-      //   };
-      // }
+      if (isClient) {
+        config.node = {
+          process: true,
+        };
+      }
     },
   },
   modules: ["@nuxtjs/storybook"],
@@ -34,6 +34,7 @@ export default {
     // Homepage pre-rendered at build time
     "/": { prerender: true },
     "/testa/**": { ssr: true },
+    "/games/**": { ssr: false },
 
     // Static page generated on-demand, revalidates in background (ISG)
     // là feature testing code nên cache 1 day ago

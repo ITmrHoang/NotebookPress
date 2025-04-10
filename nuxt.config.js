@@ -16,7 +16,12 @@ export default defineNuxtConfig({
         typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "http://localhost:3000/" : "/NotebookPress/",
     },
   },
-
+  // ssr: false,
+  // mode: "static",
+  router: {
+    base: typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "http://localhost:3000/" : "/NotebookPress/",
+  },
+  generate: { subFolders: true, fallback: "404.html" },
   app: {
     // rootId: "_himo",
     rootAttrs: {
