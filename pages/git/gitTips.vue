@@ -20,11 +20,8 @@
           <strong> git config --global --edit</strong>
           <br />
           <code>
-            <pre>
               [alias]
                 &lt;alias_name> = '&lt;cmd_has_space>' 
-                </pre
-            >
           </code>
         </p>
       </details>
@@ -34,7 +31,7 @@
         <h2>2. Utilize</h2>
         <details>
           <summary>
-            create alias add commit and push fast with dateitme and user commit
+            create alias add commit and push fast with datetime and user commit
           </summary>
           <p>
             <code>
