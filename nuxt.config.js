@@ -15,6 +15,9 @@ export default defineNuxtConfig({
   },
   // ssr: false,
   // mode: "static",
+  components: [
+      { path: '~/components/common', pathPrefix: false },
+      '~/components'],
   router: {
     base: typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "/NotebookPress/" : "/NotebookPress/",
   },
