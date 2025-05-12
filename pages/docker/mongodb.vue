@@ -23,7 +23,7 @@
     methods: {
       loadfileDocker() {
         try {
-          import("~/assets/docker/mongodb.Dockerfile").then(data => console.log(data));
+          import("~/assets/docker/mongodb.Dockerfile", {with : {type:'text'}}).then(data => console.log(data)).catch(e => console.log(e));
           // this.fileContent = module.default; // Nội dung tệp được lưu vào biến fileContent
         } catch (error) {
           console.error("Error loading file:", error);
