@@ -97,8 +97,8 @@ const show = ref(true)
       </div>
       <div>
         <code>
-        rm -rf < path_to_submodule>
-         </code>
+          rm -rf < path_to_submodule>
+        </code>
       </div>
     </div>
   </Fragment>
