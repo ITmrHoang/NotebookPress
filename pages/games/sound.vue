@@ -17,6 +17,22 @@
   </div>
 </template>
 
+<script setup > 
+import sound from '~/assets/public/sound/games/sounds/bip.mp3?url';
+const playSound2 = (e) => {
+    e.preventDefault()
+        if (sound) {
+          const audio = new Audio(sound);
+          audio.play();
+          audio.addEventListener("ended", () => {
+            audio.src = ""; // Giải phóng tài nguyên âm thanh
+            audio.load(); // Đảm bảo không còn dữ liệu âm thanh
+            audio.remove(); // Giải phóng bộ nhớ
+          });
+        }
+      }
+</script>
+
 <script>
   export default {
     data() {

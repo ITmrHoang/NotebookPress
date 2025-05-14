@@ -40,7 +40,10 @@
 // import dockerfileContent from '../../assets/docker/mongodb.Dockerfile?raw';
 // console.log(dockerfileContent)
 
+
 const loadfileDocker = () => {
+
+
 // try{
           // import("~/assets/docker/mongodb.Dockerfile", {with : {type:'json'}}).then(data => console.log(data)).catch(e => console.log(e));
           // this.fileContent = module.default; // Nội dung tệp được lưu vào biến fileContent
