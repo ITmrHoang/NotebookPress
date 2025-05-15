@@ -88,15 +88,63 @@ const file : any= import.meta.glob('~/assets/js/*.js',
 // query: '?raw', // lấy dữ liệu dạng raw - string data
 //   query: {"?raw": ''}, // nhúng prams vào url link import tính năng tương tự ?raw nếu dùng ?raw: còn không sẽ raw=data
 // import: 'default', // nếu là module reacjs sẽ mặc định sẽ dùng import target vào export nó không
-// as: 'url' // import dưới dạng url
-//  eager: true, //các tệp tin sẽ được nhập động (lazy-loaded). Điều này có nghĩa là các tệp tin sẽ chỉ được nhập khi bạn thực sự gọi đến chúng. Khi bạn sử dụng eager: true, các tệp tin sẽ được nhập ngay lập tức khi mã của bạn được chạy, không cần phải gọi đến chúng trước
+// as: 'url' // import dưới dạng moudle default là string url file
+//  eager: true, // false các tệp tin sẽ được nhập động (lazy-loaded). Điều này có nghĩa là các tệp tin sẽ chỉ được nhập khi bạn thực sự gọi đến chúng. Khi bạn sử dụng eager: true, các tệp tin sẽ được nhập ngay lập tức khi mã của bạn được chạy, không cần phải gọi đến chúng trước
   },)
 }
+
+//ví dụ:
+const module = import.meta.glob('~/assets/js/*.js', { eager: true });
+// output {/assets/js/test.js: Module}
+// có thể dùng trực tiếp module['/assets/js/test.js']
+const module = import.meta.glob('~/assets/js/*.js', { eager: false });
+// output {'/assets/js/test.js': ():Promise => import("/_nuxt/assets/js/test.js")}
+// cần phải load () để sử dụng module['/assets/js/test.js']().then(module => ....)
             </pre>
-
-
           </div>
         </Fragment>
+      <Fragment title="Download file">
+          <div>
+            <h3> download file về với dữ liệu đâu vào là text</h3>
+            <pre>
+document.getElementById('downloadBtn').addEventListener('click', function() {
+  // Create a blob with the file content
+  const blob = new Blob(['Hello, world!'], { type: 'text/plain' });
+  // Create a link element
+  const link = document.createElement('a');
+  // Set the download attribute with a filename
+  link.download = 'example.txt';
+  // Create a URL for the blob and set it as the href attribute
+  link.href = window.URL.createObjectURL(blob);
+  // Append the link to the body
+  document.body.appendChild(link);
+  // Programmatically click the link to trigger the download
+  link.click();
+  // Remove the link from the document
+  document.body.removeChild(link);
+});
+            </pre>
+            <h3> download dạng import url</h3>
+            <pre>
+document.getElementById('downloadBtn').addEventListener('click', async function() {
+  // Dynamically import the URL
+  const fileUrl = await import("~/assets/docker/mongodb.Dockerfile?url");
+  // Create a link element
+  const link = document.createElement('a');
+  // Set the download attribute with a filename
+  link.download = 'mongodb.Dockerfile';
+  // Set the href attribute to the file URL
+  link.href = fileUrl.default;
+  // Append the link to the body
+  document.body.appendChild(link);
+  // Programmatically click the link to trigger the download
+  link.click();
+  // Remove the link from the document
+  document.body.removeChild(link);
+  });
+            </pre>
+          </div>
+      </Fragment>
 <Test></Test>
       </div>
     </Segment>

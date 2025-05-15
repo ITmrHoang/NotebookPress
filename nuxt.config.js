@@ -13,15 +13,19 @@ export default defineNuxtConfig({
       baseURL: typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "/NotebookPress/" : "/NotebookPress/",
     },
   },
+
   // ssr: false,
   // mode: "static",
   components: [
       { path: '~/components/common', pathPrefix: false },
       '~/components'],
+
   router: {
     base: typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "/NotebookPress/" : "/NotebookPress/",
   },
+
   generate: { subFolders: true, fallback: "404.html" },
+
   app: {
     // rootId: "_himo",
     baseURL: typeof process != undefined ? process?.env.NUXT_APP_BASE_URL || "/NotebookPress/" : "/NotebookPress/",
@@ -63,6 +67,15 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ["~/assets/css/main.css", ...styleFiles("assets/css/globals/")],
+  css: ["~/assets/css/main.css","~/assets/css/tailwind.css", ...styleFiles("assets/css/globals/")],
   compatibilityDate: "2025-04-08",
+  modules: ['@nuxt/icon', "@nuxtjs/tailwindcss"],
+  icon: {
+    customCollections: [
+      {
+        prefix: 'my-icon',
+        dir: './assets/my-icons'
+      },
+    ],
+  },
 });

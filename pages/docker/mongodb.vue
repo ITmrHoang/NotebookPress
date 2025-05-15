@@ -9,6 +9,7 @@
       <span>url : mongodb://localhost:27017</span>
     </article>
   </section>
+  <DownloadFileLocal></DownloadFileLocal>
   <div> <button @click="loadfileDocker"> file</button></div>
 </template>
 
