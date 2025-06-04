@@ -115,13 +115,15 @@ document.getElementById('downloadBtn').addEventListener('click', function() {
   // Set the download attribute with a filename
   link.download = 'example.txt';
   // Create a URL for the blob and set it as the href attribute
-  link.href = window.URL.createObjectURL(blob);
+  const url = window.URL.createObjectURL(blob);
+  link.href = url
   // Append the link to the body
   document.body.appendChild(link);
   // Programmatically click the link to trigger the download
   link.click();
   // Remove the link from the document
   document.body.removeChild(link);
+  URL.revokeObjectURL(url); // Dọn dẹp bộ nhớ
 });
             </pre>
             <h3> download dạng import url</h3>

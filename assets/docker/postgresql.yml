@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  # docker db postgresql
+  postgres:
+    image: postgres:15
+    container_name: himo-postgres-15
+    environment:
+      POSTGRES_USER: himo
+      POSTGRES_PASSWORD: himo-minho
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    volumes:
+      # Thư mục lưu dữ liệu thực của DB (giữ data sau khi stop container)
+      - ./db:/var/lib/postgresql/data
+      
+      # Chạy các file SQL khi DB mới được khởi tạo nều folder db trống chưa có db
+      - ./init:/docker-entrypoint-initdb.d
+  # PgAdmin4 for DBMS
+  pgAdmin:
+    image: dpage/pgadmin4
+    container_name: himo-pgAdmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: himo-minho@himodev.com
+      PGADMIN_DEFAULT_PASSWORD: himodev
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
