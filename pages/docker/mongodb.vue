@@ -1,14 +1,18 @@
 <template>
   <section>
     <h3>content file:</h3>
+    <br/>
     <pre>{{dockerfileContent}}</pre>
-    <DownloadFileLocal icon="my-icon:file-type-docker2" test="13213" label="download"></DownloadFileLocal>
+    <br/>
+    <DownloadFileLocal icon="my-icon:file-type-docker2" :url="url" label="download" fileName="mongodb.Dockerfile"></DownloadFileLocal>
     <span>run bind folder data</span>
     <article>
+      <h3>build image</h3>
       <code>
         docker run -d -p 27017:27017 -v /path/to/your/data:/data/db --name mongodb_container mongo
       </code>
-      <span>url : mongodb://localhost:27017</span>
+      <h1> How  to connect mongodb</h1>
+      <p>url : mongodb://localhost:27017</p>
     </article>
   </section>
 

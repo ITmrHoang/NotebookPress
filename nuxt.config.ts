@@ -29,7 +29,7 @@ export default {
       }
     },
   },
-  modules: ["@nuxtjs/storybook"],
+  modules: ['@nuxt/icon', "@nuxtjs/storybook"],
   routeRules: {
     // Homepage pre-rendered at build time
     "/": { prerender: true },
@@ -48,6 +48,15 @@ export default {
     "/admin/**": { ssr: false },
     // Automatically adds cors headers with - you can customize the output by overriding with cors: trueheaders
     "/api/**": { cors: true },
+  },
+  pwa: {
+    registerType: 'autoUpdate',
+    injectRegister: 'auto',
+    swSrc: 'service-worker.ts', // 👈 File bạn tự viết
+    devOptions: {
+      enabled: true, // 👈 Bắt buộc nếu muốn test SW trong dev
+      type: 'module'
+    }
   },
   postcss: {
     plugins: {

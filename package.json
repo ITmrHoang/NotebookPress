@@ -18,12 +18,13 @@
     "@nuxt/types": "^2.18.1",
     "@nuxtjs/storybook": "^8.2.0",
     "markdown-it": "^14.1.0",
-    "nuxt": "^3.13.0",
+    "nuxt": "^3.17.5",
     "path": "^0.12.7",
     "sitemap": "^8.0.0",
     "storybook": "^8.3.4",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "web-push": "^3.6.7"
   },
   "devDependencies": {
     "@nuxt/icon": "^1.12.0",

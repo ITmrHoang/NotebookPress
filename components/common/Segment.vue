@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="$attrs">
+  <article v-bind="$attrs">
     <section v-if="slots.title">
       <slot name="title">
       </slot>
@@ -15,13 +15,14 @@
         attr: {{JSON.stringify($attrs)}} \ {{JSON.stringify(attrs)}}
       </slot>
     </Transition>
-  </div>
+  </article>
 </template>
 <script setup>
+
 import {useSlots} from 'vue';
 import { useAttrs, defineOptions } from 'vue'
+defineOptions({name: "Segment"})
 const attrs = useAttrs()
-console.log(attrs)
 const props = defineProps({
       title: String,
       animation: {
@@ -48,9 +49,11 @@ const slots = useSlots();
 .v-leave-to {
   opacity: 0;
 }
+
 .content_lv {
   --lv: v-bind(props.lv);
-  padding-top: clamp(6px,calc(21px - calc(var(--lv)*3px)), 21px);
-  padding-left: calc(v-bind('props.lv')*10px); /* can dont using '' in v-bind but error in ide */
+  padding-top: clamp(6px, calc(21px - calc(var(--lv)*3px)), 21px);
+  padding-left: calc(v-bind('props.lv')*10px);
+  /* can dont using '' in v-bind but error in ide */
 }
 </style>

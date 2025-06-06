@@ -1,14 +1,14 @@
 version: "3.8"
 
 services:
-  # docker db postgresql
+  # docker db postgresql default host is name postgres
   postgres:
     image: postgres:15
     container_name: himo-postgres-15
     environment:
       POSTGRES_USER: himo
       POSTGRES_PASSWORD: himo-minho
-      POSTGRES_DB: mydb
+      POSTGRES_DB: himodb
     ports:
       - "5432:5432"
     volumes:
@@ -25,6 +25,6 @@ services:
       PGADMIN_DEFAULT_EMAIL: himo-minho@himodev.com
       PGADMIN_DEFAULT_PASSWORD: himodev
     ports:
-      - "8080:80"
+      - "8181:80"
     depends_on:
       - postgres
