@@ -37,7 +37,7 @@ yarn-debug.log*
 yarn-error.log*
 
 #folder database
-# **/db/
+**/db/
 
 # Local env files
 .env

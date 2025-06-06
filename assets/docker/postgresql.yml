@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  # docker db postgresql default host is name postgres
+  # docker db postgresql default host in other docker name postgres
   postgres:
     image: postgres:15
     container_name: himo-postgres-15
