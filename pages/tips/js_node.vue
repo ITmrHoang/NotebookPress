@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Tổng hợp một số tip khi dùng js và nodejs simplize</h1>
+    <h1>Tổng hợp một số tip khi dùng js và nodejs simple</h1>
     <Segment
       title="import, import(),import.meta.glob() dynamic import lấy file  trong node js, lấy content file dạng text, url, other đẻ dử dụng">
 
@@ -40,7 +40,7 @@ import "module-name";
             <br/>
             import  m from '~/assets/js/test.js?inline';
             <br/>
-            // no-inline Đảm bảo tài nguyên được nhập dưới dạng URL không được nhập inline, hữu ích khi bạn muốn sử dụng URL của tài nguyê
+            // no-inline Đảm bảo tài nguyên được nhập dưới dạng URL không được nhập inline, hữu ích khi bạn muốn sử dụng URL của tài nguyên
             <br/>
             import  m from '~/assets/js/test.js?no-inline';
             <br/>
@@ -59,7 +59,7 @@ import('path/to/formComponent').then(module => {
     // Sử dụng formComponent ở đây
     console.log(module);
 });
-//ngoài có thể  sử dụng query trong url như imporrt thường hoặc thêm vào params2 (option : type)
+//ngoài có thể  sử dụng query trong url như import thường hoặc thêm vào params2 (option : type)
 // để lấy content file dạng string 
 import("~/assets/docker/mongodb.Dockerfile?raw").then(data => console.log(data)).catch(e => console.log(e));
 
@@ -87,8 +87,8 @@ const file : any= import.meta.glob('~/assets/js/*.js',
   { 
 // query: '?raw', // lấy dữ liệu dạng raw - string data
 //   query: {"?raw": ''}, // nhúng prams vào url link import tính năng tương tự ?raw nếu dùng ?raw: còn không sẽ raw=data
-// import: 'default', // nếu là module reacjs sẽ mặc định sẽ dùng import target vào export nó không
-// as: 'url' // import dưới dạng moudle default là string url file
+// import: 'default', // nếu là module reactJs sẽ mặc định sẽ dùng import target vào export nó không
+// as: 'url' // import dưới dạng module default là string url file
 //  eager: true, // false các tệp tin sẽ được nhập động (lazy-loaded). Điều này có nghĩa là các tệp tin sẽ chỉ được nhập khi bạn thực sự gọi đến chúng. Khi bạn sử dụng eager: true, các tệp tin sẽ được nhập ngay lập tức khi mã của bạn được chạy, không cần phải gọi đến chúng trước
   },)
 }
